@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {ContactDiv} from 'components/Filter/FilterStyled';
+import { ContactDiv } from 'components/Filter/FilterStyled';
 
 const Filter = ({ value, onChange }) => {
   const handleInputChange = name => event => {
@@ -8,14 +8,12 @@ const Filter = ({ value, onChange }) => {
 
   return (
     <ContactDiv>
-      <label htmlFor="filter">
-        Find contacts by name
-      </label>
+      <label htmlFor="filter">Find contacts by name</label>
       <input
         type="text"
         name="filter"
         id="filter"
-        value={value}        
+        value={value}
         onChange={handleInputChange('filter')}
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
