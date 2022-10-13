@@ -1,24 +1,24 @@
+import { ContactUl } from 'components/ContactsList/ContactListStyled';
 import PropTypes from 'prop-types';
 
-export default function ContactsList({ items, removeContact }) {
-  const elements = items.map(({ name, number, id }) => {
-    return (
-      <li className="contacts__item" key={id}>
-        <a href="tel:{number}">{name}: {number}{' '}</a>
-        
-        <button
-          className="contacts__item-del"
-          onClick={() => removeContact(id)}
-        >
-          delete
-        </button>
-      </li>
-    );
-  });
-  return <ul className="contacts__list">{elements}</ul>;
-}
+const ContactList = ({ contacts, filter, onDeleteItem }) => {
+  return (
+    <ContactUl>
+      {contacts
+        .filter(contact => contact.name.toLowerCase().includes(filter))
+        .map(contact => (
+          <li key={contact.id}>
+            {contact.name}: {contact.number}
+            <button onClick={() => onDeleteItem(contact.id)}>Delete</button>
+          </li>
+        ))}
+    </ContactUl>
+  );
+};
 
-ContactsList.propTypes = {
-  items: PropTypes.array.isRequired,
-  removeContact: PropTypes.func.isRequired,
+export { ContactList };
+
+ContactList.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  filter: PropTypes.string.isRequired,
 };
